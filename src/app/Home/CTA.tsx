@@ -12,7 +12,6 @@ const CTA = () => {
   const bubble2 = useRef(null);
 
   useGSAP(() => {
-    // বড় সার্কেল - বাম (ধীরে মুভ করবে)
     gsap.to(circleL.current, {
       x: "random(-30, 30)",
       y: "random(-20, 20)",
@@ -22,7 +21,6 @@ const CTA = () => {
       ease: "sine.inOut",
     });
 
-    // বড় সার্কেল - ডান
     gsap.to(circleR.current, {
       x: "random(30, -30)",
       y: "random(20, -20)",
@@ -32,7 +30,6 @@ const CTA = () => {
       ease: "sine.inOut",
     });
 
-    // ছোট বাবল ১ (একটু চঞ্চল মুভমেন্ট)
     gsap.to(bubble1.current, {
       x: "random(-100, 100)",
       y: "random(-50, 50)",
@@ -43,7 +40,6 @@ const CTA = () => {
       ease: "power1.inOut",
     });
 
-    // ছোট বাবল ২
     gsap.to(bubble2.current, {
       x: "random(100, -100)",
       y: "random(50, -100)",
@@ -62,11 +58,9 @@ const CTA = () => {
         ref={container}
         className="relative w-full py-24 bg-[#00A859] overflow-hidden rounded-[2.5rem] text-center"
       >
-        {/* মেইন বড় সার্কেলগুলো (Figma Style) */}
         <div ref={circleL} className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] border border-white/20 rounded-full bg-white/5 pointer-events-none" />
         <div ref={circleR} className="absolute bottom-[-15%] right-[-5%] w-[450px] h-[450px] border border-white/20 rounded-full bg-white/5 pointer-events-none" />
 
-        {/* ছোট বাবলগুলো (Bubble Type) */}
         <div ref={bubble1} className="absolute top-[20%] right-[15%] w-16 h-16 border border-white/40 rounded-full bg-white/10 pointer-events-none shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
         <div ref={bubble2} className="absolute bottom-[20%] left-[20%] w-12 h-12 border border-white/40 rounded-full bg-white/10 pointer-events-none shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
 
