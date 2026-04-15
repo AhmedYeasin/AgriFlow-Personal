@@ -6,7 +6,7 @@ import cropImage from "@/app/Images/Crop-Analysis.png";
 import Image from "next/image";
 const Hero = () => {
   return (
-    <section className="relative w-full py-20 lg:py-32 overflow-hidden bg-white dark:bg-black rounded-2xl">
+    <section className="relative w-full mt-20 py-20 lg:py-32 overflow-hidden ">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <motion.div

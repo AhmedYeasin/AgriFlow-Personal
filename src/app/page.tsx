@@ -7,9 +7,9 @@ import CTA from "@/app/Home/CTA";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 font-sans dark:bg-gray-600">
+    <div className="bg-gray-50 font-sans dark:bg-black">
       <Navber></Navber>
-      <main className="py-30 px-10">
+      <main className="">
         <Hero></Hero>
         <State></State>
         <Features></Features>
