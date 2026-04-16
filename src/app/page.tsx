@@ -15,7 +15,9 @@ export default function Home() {
         <Features></Features>
         <CTA></CTA>
       </main>
+
       <Footer></Footer>
+
     </div>
   );
 }
