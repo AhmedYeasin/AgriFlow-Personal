@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const Features = () => {
   return (
-    <section className="w-full px-10 py-20   transition-colors duration-300">
+    <section className="w-full px-10 pt-20  transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header Part */}
