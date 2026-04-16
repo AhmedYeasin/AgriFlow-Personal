@@ -1,11 +1,6 @@
-import React from 'react';
-import {
-  FaFacebook,
-  FaLinkedin,
-  FaGithub,
-  FaXTwitter,
-} from "react-icons/fa6";
-import Logo from './Logo';
+import React from "react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -16,7 +11,7 @@ const Footer = () => {
           {/* Column 1 */}
           <div className="flex flex-col gap-4">
             <Logo />
-            <p className="text-gray-600  text-sm leading-relaxed mt-2">
+            <p className="text-gray-500 dark:text-zinc-400 text-sm leading-relaxed mt-2">
               AgriFlow AI Platform Resources Legal Bridging the gap between the
               soil and the future of global trade with precision artificial
               intelligence.
@@ -109,8 +104,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-300 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-xs">
+        <div className="border-t border-gray-200 dark:border-zinc-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 dark:text-zinc-500 text-xs">
           © 2024 AgriFlow AI. All rights reserved. Precision Management for Global Growth.
           </p>
         </div>
