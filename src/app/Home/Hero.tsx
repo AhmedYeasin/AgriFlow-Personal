@@ -4,10 +4,14 @@ import { motion } from "framer-motion";
 import Button from "@/app/components/Button";
 import cropImage from "@/app/Images/Crop-Analysis.png";
 import Image from "next/image";
+import HeroVideo from "./HeroVideo";
+
 const Hero = () => {
   return (
     <section className="relative w-full py-20 lg:py-32 overflow-hidden bg-white dark:bg-black rounded-2xl">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+    
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -43,6 +47,7 @@ const Hero = () => {
               text="Join as Buyer"
               href="/marketplace"
               variant="outline"
+              className="bg-[#D5E0F8] hover:bg-white"
             />
           </div>
         </motion.div>
@@ -56,11 +61,11 @@ const Hero = () => {
         >
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800 bg-zinc-900 aspect-video lg:aspect-square flex items-center justify-center">
             <Image
-        src={cropImage}
-        alt="AI Agriculture"
-        placeholder="blur" 
-        className="object-cover w-full h-full"
-      />
+              src={cropImage}
+              alt="AI Agriculture"
+              placeholder="blur" 
+              className="object-cover w-full h-full"
+            />
             {/* Floating AI Card */}
             <div className="absolute bottom-6 right-6 bg-white dark:bg-zinc-950 p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-zinc-800 flex flex-col gap-1">
               <span className="text-[10px] uppercase font-bold text-gray-400">
@@ -81,6 +86,11 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
+
+      <div className="absolute inset-0 z-50 pointer-events-none">
+        <HeroVideo />
+      </div>
+
     </section>
   );
 };

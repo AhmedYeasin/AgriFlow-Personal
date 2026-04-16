@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 import Logo from "./Logo";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1: Brand & About */}
           <div className="flex flex-col gap-4">
-            <Logo />
+            <Link href="/"><Logo /></Link>
             <p className="text-gray-500 dark:text-zinc-400 text-sm leading-relaxed mt-2">
               AgriFlow AI Platform Resources Legal Bridging the gap between the
               soil and the future of global trade with precision artificial
@@ -96,7 +97,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 dark:border-zinc-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 dark:text-zinc-500 text-xs">
-          © 2024 AgriFlow AI. All rights reserved. Precision Management for Global Growth.
+          © 2026 AgriFlow AI. All rights reserved. Precision Management for Global Growth.
           </p>
         
         </div>
