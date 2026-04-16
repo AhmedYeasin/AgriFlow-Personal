@@ -15,10 +15,10 @@ export default function DashboardPage() {
       {/* Top Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Terroir Dashboard</h1>
-          <p className="text-sm text-gray-500">Real-time agricultural intelligence and marketplace management.</p>
+          <h1 className="text-2xl font-bold ">Terroir Dashboard</h1>
+          <p className="text-sm text-gray-600">Real-time agricultural intelligence and marketplace management.</p>
         </div>
-        <div className="text-sm font-medium bg-white dark:bg-zinc-900 px-4 py-2 rounded-lg border border-gray-100 dark:border-zinc-800 shadow-sm">
+        <div className="text-sm font-medium px-4 py-2 rounded-lg border border-gray-100 dark:border-zinc-800 shadow-sm">
            📅 Oct 24, 2026
         </div>
       </div>

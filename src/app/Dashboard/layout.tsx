@@ -26,12 +26,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex h-screen ">
       {/* Sidebar / Drawer */}
       <aside className="w-64  border-r border-gray-100 flex flex-col p-6 fixed h-full">
-        <div className="text-2xl font-bold text-deep-green mb-10 flex items-center gap-2">
+        <div className="text-2xl font-bold text-deep-green mb-5 flex items-center gap-2">
            <div className="w-8 h-8 bg-deep-green rounded-lg">
-            </div> <Logo></Logo>
+           <Logo></Logo>
+            </div>
         </div>
 
-        <nav className="flex-1 space-y-2">
+        <nav className="flex-1 space-y-1">
           {sidebarLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -41,8 +42,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 href={link.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
                   isActive 
-                  ? 'bg-deep-green text-white' 
-                  : 'text-gray-500 hover:bg-green-50 hover:text-deep-green'
+                  ? 'bg-green-600 text-white' 
+                  : 'text-gray-600 hover:bg-green-200 hover:text-white'
                 }`}
               >
                 <Icon className="text-xl" />
