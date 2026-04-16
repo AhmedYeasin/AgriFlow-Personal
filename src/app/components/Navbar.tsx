@@ -10,10 +10,39 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [flashLine, setFlashLine] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    let hasScrolled = false;
+    let timeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      if (window.scrollY > 10 && !hasScrolled) {
+        hasScrolled = true;
+        setFlashLine(true);
+        // Nano second flash line effect
+        timeout = setTimeout(() => setFlashLine(false), 250);
+      } else if (window.scrollY <= 10) {
+        hasScrolled = false;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full backdrop-blur-md z-50 border-b border-gray-300 ">
+    <nav className="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 border-b border-gray-300 dark:border-gray-800">
+      {/* Flashing Green Line Effect */}
+      <div 
+        className={`absolute bottom-0 left-0 h-[2px] bg-green-500 transition-all duration-200 ease-out ${
+          flashLine ? "w-full opacity-100" : "w-0 opacity-0"
+        }`} 
+      />
       <div className="max-w-full mx-auto px-6 md:px-15 h-20 flex items-center justify-between">
         <div className="flex items-center">
           <Logo />
