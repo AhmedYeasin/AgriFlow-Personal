@@ -7,15 +7,17 @@ const Footer = () => {
     <footer className="w-full border-t border-gray-300 py-16">
       <div className=" mx-auto px-6 md:px-15">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Column 1: Brand & About */}
+          
+          {/* Column 1 */}
           <div className="flex flex-col gap-4">
             <Logo />
-            <p className="text-gray-600  text-sm leading-relaxed mt-2">
+            <p className="text-gray-500 dark:text-zinc-400 text-sm leading-relaxed mt-2">
               AgriFlow AI Platform Resources Legal Bridging the gap between the
               soil and the future of global trade with precision artificial
               intelligence.
             </p>
-            <div className="flex gap-4 mt-2">
+
+            <div className="flex items-center gap-4 mt-2">
               <FaFacebook
                 className="text-gray-600 hover:text-green-600 cursor-pointer transition-colors"
                 size={20}
@@ -35,7 +37,14 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: Platform*/}
+          {/* Reusable class */}
+          {/*
+            hover effect:
+            - text green
+            - underline grow animation
+          */}
+
+          {/* Column 2 */}
           <div>
             <h3 className=" font-bold mb-6">
               Marketplace
@@ -53,7 +62,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3: Resources */}
+          {/* Column 3 */}
           <div>
             <h3 className=" font-bold mb-6">
               Documentation
@@ -71,7 +80,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Legal*/}
+          {/* Column 4 */}
           <div>
             <h3 className="font-bold mb-6">
               Privacy Policy
@@ -91,11 +100,12 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-300 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-xs">
+        <div className="border-t border-gray-200 dark:border-zinc-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 dark:text-zinc-500 text-xs">
           © 2024 AgriFlow AI. All rights reserved. Precision Management for Global Growth.
           </p>
         </div>
