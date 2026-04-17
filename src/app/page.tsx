@@ -7,7 +7,7 @@ import Navbar from "@/app/components/Navber";
 
 export default function Home() {
   return (
-    <div className="font-sans ">
+    <div className="bg-gray-50 font-sans dark:bg-gray-600">
       <Navbar></Navbar>
       <main className="">
         <Hero></Hero>
@@ -16,7 +16,6 @@ export default function Home() {
         <CTA></CTA>
       </main>
       <Footer></Footer>
-
     </div>
   );
 }
