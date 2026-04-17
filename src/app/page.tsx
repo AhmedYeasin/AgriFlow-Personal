@@ -3,19 +3,18 @@ import Hero from "@/app/Home/Hero";
 import State from "@/app/Home/State";
 import Features from "@/app/Home/Features";
 import CTA from "@/app/Home/CTA";
-import Navbar from "./components/Navbar";
+import Navbar from "@/app/components/Navber";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 font-sans dark:bg-gray-600">
+    <div className="font-sans ">
       <Navbar></Navbar>
-      <main className="py-30 px-10">
+      <main className="">
         <Hero></Hero>
         <State></State>
         <Features></Features>
         <CTA></CTA>
       </main>
-
       <Footer></Footer>
 
     </div>
