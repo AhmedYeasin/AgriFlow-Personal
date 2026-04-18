@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { HiMenuAlt3, HiX, HiMoon, HiSun } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -13,31 +13,27 @@ const Navbar = () => {
   const [flashLine, setFlashLine] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Flash line logic thik rakhar jonno useRef proyojon
-  const hasScrolledOnce = useRef(false);
-
   useEffect(() => {
     setMounted(true);
     let timeout;
 
     const handleScroll = () => {
       const offset = window.scrollY;
-
-      // Background fix: 50px niche namle transparent hobe
+      
+      // Scroll state update for background and text colors
       if (offset > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
 
-      // Flash line logic fix: Ekbar trigger hobe
-      if (offset > 10 && !hasScrolledOnce.current) {
-        hasScrolledOnce.current = true;
+      // Flash line logic: Sudhu ekbar scroll-e trigger hobe
+      if (offset > 10 && !hasScrolledOnce) {
+        hasScrolledOnce = true;
         setFlashLine(true);
-        timeout = setTimeout(() => setFlashLine(false), 600);
+        timeout = setTimeout(() => setFlashLine(false), 100);
       } else if (offset <= 10) {
-        hasScrolledOnce.current = false;
-        setFlashLine(false);
+        hasScrolledOnce = false;
       }
     };
 
@@ -49,11 +45,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        scrolled
-          ? "backdrop-blur border-transparent" // Scroll korle purapuri faka
-          : "bg-white/40 dark:bg-black/60 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800" // Default glassmorphism
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled 
+          ? "bg-black/50 backdrop-blur-none border-transparent" // Scroll hole transparent
+          : "bg-transparent backdrop-blur-xl border-b border-gray-200 dark:border-gray-800" // Default state
       }`}
     >
       {/* Interactive Flashing Green Line */}
@@ -85,8 +81,8 @@ const Navbar = () => {
           <Link
             href="/login"
             className={`px-5 py-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-green-500 font-bold" : "text-gray-600 dark:text-gray-300"
-            } hover:text-green-400`}
+              scrolled ? "text-green-600 font-bold" : "text-gray-600 dark:text-gray-300"
+            } hover:text-green-500`}
           >
             Log In
           </Link>
