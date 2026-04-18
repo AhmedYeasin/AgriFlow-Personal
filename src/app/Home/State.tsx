@@ -21,10 +21,10 @@ const State = () => {
               transition={{ delay: index * 0.2 }}
               className="flex flex-col gap-1"
             >
-              <h2 className="text-4xl lg:text-5xl font-bold text-emerald-900 dark:text-green-500">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-emerald-900 dark:text-green-500">
                 {stat.value}
               </h2>
-              <p className="text-desc-gray text-sm font-medium uppercase tracking-wide">
+              <p className="text-desc-gray text-xs sm:text-sm font-medium uppercase tracking-wide">
                 {stat.label}
               </p>
             </motion.div>
