@@ -53,7 +53,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
         scrolled
           ? "backdrop-blur border-transparent" // Scroll korle purapuri faka
-          : "bg-white/40 dark:bg-black/60 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800" // Default glassmorphism
+          : " dark:bg-black/60 backdrop-blur-xl dark:border-gray-800" // Default glassmorphism
       }`}
     >
       {/* Interactive Flashing Green Line */}
