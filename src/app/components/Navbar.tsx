@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"; // useRef add kora hoyeche
 import { HiMenuAlt3, HiX, HiMoon, HiSun } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -12,29 +12,31 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const [flashLine, setFlashLine] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  // Local variable-er poriborte useRef use kora hoyeche
+  const hasScrolledOnce = useRef(false);
 
   useEffect(() => {
     setMounted(true);
-    let hasScrolledOnce = false;
     let timeout;
 
     const handleScroll = () => {
       const offset = window.scrollY;
       
-      // Scroll state update for background and text colors
       if (offset > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
 
-      // Flash line logic: Sudhu ekbar scroll-e trigger hobe
-      if (offset > 10 && !hasScrolledOnce) {
-        hasScrolledOnce = true;
+      // Flash line logic fix
+      if (offset > 10 && !hasScrolledOnce.current) {
+        hasScrolledOnce.current = true;
         setFlashLine(true);
-        timeout = setTimeout(() => setFlashLine(false), 100);
+        timeout = setTimeout(() => setFlashLine(false), 200);
       } else if (offset <= 10) {
-        hasScrolledOnce = false;
+        hasScrolledOnce.current = false;
+        setFlashLine(false); // Reset flash state
       }
     };
 
@@ -49,14 +51,14 @@ const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "bg-transparent backdrop-blur-none border-transparent" // Scroll hole transparent
-          : "bg-white/40 dark:bg-black/90 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800" // Default state
+          ? "bg-transparent backdrop-blur-none border-transparent" 
+          : "bg-white/40 dark:bg-black/90 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800" 
       }`}
     >
       {/* Interactive Flashing Green Line */}
       <motion.div
         initial={{ width: "0%", opacity: 0 }}
-        animate={flashLine ? { width: "100%", opacity: 1 } : { opacity: 0 }}
+        animate={flashLine ? { width: "100%", opacity: 1 } : { width: "100%", opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className="absolute bottom-0 left-0 h-[2px] bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.6)]"
       />
@@ -82,7 +84,7 @@ const Navbar = () => {
           <Link
             href="/login"
             className={`px-5 py-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-green-600 font-bold" : "text-gray-600 dark:text-gray-300"
+              scrolled ? "text-green-600 font-bold" : "text-black dark:text-gray-300"
             } hover:text-green-500`}
           >
             Log In
