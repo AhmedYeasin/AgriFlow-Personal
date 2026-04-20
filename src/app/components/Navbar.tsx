@@ -85,7 +85,7 @@ const Navbar = () => {
           <Link
             href="/login"
             className={`px-5 py-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-green-500 font-bold" : "text-gray-600 dark:text-gray-300"
+              scrolled ? "text-green-500 font-bold" : "text-black dark:text-gray-300"
             } hover:text-green-400`}
           >
             Log In
