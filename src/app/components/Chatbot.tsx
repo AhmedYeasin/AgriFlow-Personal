@@ -29,6 +29,7 @@ const Chatbot = () => {
   }, [messages, isTyping, isOpen, mode]);
 
   const handleSend = async () => {
+    if (isTyping) return;
     if (!input.trim()) return;
 
     setError(null);
@@ -45,6 +46,8 @@ const Chatbot = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mode,
+          // Snapshot the conversation we intend to send for this request to avoid
+          // stale state if other updates happen while the request is in-flight.
           messages: [...messages, newMessage].map((m) => ({
             text: m.text,
             sender: m.sender,
@@ -52,9 +55,9 @@ const Chatbot = () => {
         }),
       });
 
-      const data = (await res.json().catch(() => ({}))) as { reply?: string; error?: string };
+      const data = (await res.json().catch(() => ({}))) as { reply?: string; error?: string; hint?: string };
       if (!res.ok) {
-        throw new Error(data.error || "Chat request failed.");
+        throw new Error([data.error, data.hint].filter(Boolean).join(" "));
       }
 
       const replyText = (data.reply || "").trim();
@@ -241,7 +244,13 @@ const Chatbot = () => {
                       type="text"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                      onKeyDown={(e) => {
+                        if (e.key !== "Enter") return;
+                        if (e.nativeEvent.isComposing) return;
+                        e.preventDefault();
+                        if (isTyping) return;
+                        handleSend();
+                      }}
                       placeholder="Type your message..."
                       className="flex-1 bg-gray-100 text-sm text-gray-800 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500/50 transition-all"
                     />

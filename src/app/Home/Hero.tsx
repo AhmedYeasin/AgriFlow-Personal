@@ -135,8 +135,8 @@ const Hero = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`transition-all duration-300 rounded-full ${currentIndex === index
-                ? "w-10 h-2.5 bg-[#CCFF00] shadow-[0_0_10px_rgba(204,255,0,0.5)]"
-                : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
+                  ? "w-10 h-2.5 bg-[#CCFF00] shadow-[0_0_10px_rgba(204,255,0,0.5)]"
+                  : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />

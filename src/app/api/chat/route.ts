@@ -51,7 +51,10 @@ export async function POST(req: Request) {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: "Server is missing OPENAI_API_KEY." },
+        {
+          error: "Server is missing OPENAI_API_KEY.",
+          hint: "Create a .env.local file in the project root with OPENAI_API_KEY=... then restart `npm run dev`.",
+        },
         { status: 500 },
       );
     }
