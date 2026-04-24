@@ -143,9 +143,15 @@ const Navbar = () => {
                         className="rounded-full"
                       />
                     )}
-                  <span className="font-medium">
+
+                  {/* <span className="font-medium">
                     {session.user.name}
+                  </span> */}
+
+                  <span className="font-medium">
+                    {session.user.name || "User"}
                   </span>
+
                 </div>
 
                 {/* Logout */}
@@ -202,87 +208,65 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
-        {/* {isOpen && (
+        {/* Added by shefaul */}
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="absolute top-20 left-0 w-full bg-white dark:bg-zinc-950 border-b border-green-500/30 p-6 flex flex-col gap-4 md:hidden shadow-2xl overflow-hidden"
           >
-            <Link
-              href="/login"
-              className="py-3 text-center border-2 border-green-600 font-medium text-green-600 rounded-xl"
-              onClick={() => setIsOpen(false)}
-            >
-              Log In
-            </Link>
-            <Link
-              href="/Dashboard"
-              className="py-3 text-center font-medium bg-green-600 text-white rounded-xl"
-              onClick={() => setIsOpen(false)}
-            >
-              Dashboard
-            </Link>
+            {session?.user ? (
+              <>
+                <div className="flex flex-col items-center gap-2">
+                  {session.user.image && (
+                    <Image
+                      src={session.user.image}
+                      alt="user"
+                      width={50}
+                      height={50}
+                      className="rounded-full"
+                    />
+                  )}
+
+                  {/* <p className="font-semibold">{session.user.name}</p> */}
+                  <p className="font-semibold">
+                    {session.user.name || "User"}
+                  </p>
+
+                </div>
+
+                <button
+                  onClick={() => {
+                    signOut();
+                    setIsOpen(false);
+                  }}
+                  className="py-3 text-center bg-red-500 text-white rounded-xl"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="py-3 text-center border-2 border-green-600 font-medium text-green-600 rounded-xl"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Log In
+                </Link>
+
+                <Link
+                  href="/Dashboard"
+                  className="py-3 text-center font-medium bg-green-600 text-white rounded-xl"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              </>
+            )}
           </motion.div>
-        )} */}
-
-        {/* Added by shefaul */}
-        {
-
-          isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="absolute top-20 left-0 w-full bg-white dark:bg-zinc-950 border-b border-green-500/30 p-6 flex flex-col gap-4 md:hidden shadow-2xl overflow-hidden"
-            >
-              {session?.user ? (
-                <>
-                  <div className="flex flex-col items-center gap-2">
-                    {session.user.image && (
-                      <Image
-                        src={session.user.image}
-                        alt="user"
-                        width={50}
-                        height={50}
-                        className="rounded-full"
-                      />
-                    )}
-                    <p className="font-semibold">{session.user.name}</p>
-                  </div>
-
-                  <button
-                    onClick={() => {
-                      signOut();
-                      setIsOpen(false);
-                    }}
-                    className="py-3 text-center bg-red-500 text-white rounded-xl"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link
-                    href="/login"
-                    className="py-3 text-center border-2 border-green-600 font-medium text-green-600 rounded-xl"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Log In
-                  </Link>
-
-                  <Link
-                    href="/Dashboard"
-                    className="py-3 text-center font-medium bg-green-600 text-white rounded-xl"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                </>
-              )}
-            </motion.div>
-          )}
-
+        )}
       </AnimatePresence>
     </nav>
   );
