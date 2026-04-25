@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Script from "next/script";
+// import Script from "next/script";
 import Providers from "@/providers/Providers";
+import GoogleTranslate from "./components/GoogleTranslate/GoogleTranslate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,22 +39,7 @@ export default function RootLayout({
           </ThemeProvider>
         </Providers>
         {/* Google Translate Scripts */}
-        <Script id="google-translate-config" strategy="afterInteractive">
-          {`
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,bn', 
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-`}
-        </Script>
-        <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          strategy="afterInteractive"
-        />
+        <GoogleTranslate></GoogleTranslate>
       </body>
     </html>
   );
