@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Script from "next/script";
-import QueryProvider from "@/app/Dashboard/QueryProvider";
+// import Script from "next/script";
+import Providers from "@/providers/Providers";
+import GoogleTranslate from "./components/GoogleTranslate/GoogleTranslate";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,27 +36,10 @@ export default function RootLayout({
           <QueryProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
-        </ThemeProvider>
-          </QueryProvider>
-
-        {/* Google Translate Config */}
-        <Script id="google-trangray-config" strategy="afterInteractive">
-          {`
-            window.googleTranslateElementInit = function() {
-              new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,bn,es,zh-CN,ar,fr', 
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-              }, 'google_translate_element');
-            }
-          `}
-        </Script>
-        
-        <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          strategy="afterInteractive"
-        />
+          </ThemeProvider>
+        </Providers>
+        {/* Google Translate Scripts */}
+        <GoogleTranslate></GoogleTranslate>
       </body>
     </html>
   );
