@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-<<<<<<< Updated upstream
 import Script from "next/script";
 import QueryProvider from "@/app/Dashboard/QueryProvider";
-=======
-// import Script from "next/script";
 import Providers from "@/providers/Providers";
 import GoogleTranslate from "@/app/components/GoogleTranslate/GoogleTranslate";
 
->>>>>>> Stashed changes
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,14 +34,17 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Shob provider-ke ekta sequence-e shajano hoyeche */}
+        <QueryProvider>
           <Providers>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-        </ThemeProvider>
-          </QueryProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {children}
+            </ThemeProvider>
+          </Providers>
+        </QueryProvider>
 
         {/* Google Translate Config */}
-        <Script id="google-trangray-config" strategy="afterInteractive">
+        <Script id="google-translate-config" strategy="afterInteractive">
           {`
             window.googleTranslateElementInit = function() {
               new google.translate.TranslateElement({
