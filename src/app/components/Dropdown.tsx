@@ -13,7 +13,7 @@ const Dropdown = ({ title, items }: any) => {
       onMouseLeave={() => setOpen(false)}
     >
       {/* Trigger */}
-      <button className="font-medium hover:text-green-500 transition">
+      <button className="font-medium text-yellow-500 hover:text-green-500 transition">
         {title}
       </button>
 

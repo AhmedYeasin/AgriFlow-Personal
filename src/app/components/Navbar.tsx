@@ -86,10 +86,10 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-medium">
-          <Link href="/" className="hover:text-green-500 transition">Home</Link>
-          <Link href="/marketplace" className="hover:text-green-500 transition">Marketplace</Link>
+          <Link href="/" className="text-yellow-500 font-semibold hover:text-green-500 hover:underline transition">Home</Link>
+          <Link href="/marketplace" className="text-yellow-500 font-semibold hover:text-green-500 hover:underline hover:right-to-left transition">Marketplace</Link>
           <Dropdown
-            title="Solutions"
+            title="Solutions" className="text-yellow-500 font-semibold hover:text-green-500 transition"
             items={[
               { name: "Fertilizer", link: "/fertilizer" },
               { name: "Crops & Diseases", link: "/crop-dieseases" },
@@ -98,13 +98,13 @@ const Navbar = () => {
             ]}
           />
           <Dropdown
-            title="Resources"
+            title="Resources" 
             items={[
               { name: "How It Works", link: "/how-it-works" },
               { name: "Agriculturists", link: "/agriculturist" },
             ]}
           />
-          <Link href="/about" className="hover:text-green-500 transition">About</Link>
+          <Link href="/about" className="text-yellow-500 font-semibold hover:text-green-500 transition">About</Link>
         </div>
 
         {/* Desktop Right Side */}
