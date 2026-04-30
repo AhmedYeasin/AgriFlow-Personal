@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { HiMenuAlt3, HiX, HiMoon, HiSun } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -54,10 +55,7 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeout);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Prevent hydration mismatch
@@ -65,7 +63,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
           ? "backdrop-blur-md bg-white/10 dark:bg-black/20 border-transparent" 
           : "dark:bg-black/60 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800"
@@ -97,6 +95,7 @@ const Navbar = () => {
               { name: "Services", link: "/services" },
             ]}
           />
+
           <Dropdown
             title="Resources"
             items={[
@@ -127,16 +126,36 @@ const Navbar = () => {
             Log In
           </Link>
 
-          <Link
-            href="/Dashboard"
-            className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
-              scrolled
-                ? "bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white shadow-lg shadow-green-500/10"
-                : "bg-green-600 text-white hover:bg-green-700 shadow-lg shadow-green-500/20"
-            }`}
-          >
-            Dashboard
-          </Link>
+              <div className="flex items-center gap-2">
+                {session.user.image && (
+                  <Image
+                    src={session.user.image}
+                    alt="user"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                )}
+                <span className="hidden lg:block">
+                  {session.user.name || "User"}
+                </span>
+              </div>
+
+              <button
+                onClick={() => signOut()}
+                className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="px-5 py-2 bg-green-600 text-white rounded-full hover:bg-green-700"
+            >
+              Log In
+            </Link>
+          )}
         </div>
 
         {/* Mobile Buttons */}
@@ -156,7 +175,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
