@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import Logo from "@/app/components/Logo";
 import Link from "next/link";
+import Image from "next/image"; // Image import kora hoyeche
 import { usePathname } from "next/navigation";
 import Dropdown from "@/app/components/Dropdown";
 import { IoHomeOutline } from "react-icons/io5";
@@ -17,14 +18,14 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
-  // FIXED ERROR 1: flashLine state declare kora hoyeche
   const [flashLine, setFlashLine] = useState(false);
 
-  // Flash line logic control
+  // session variable define kora holo (NextAuth use korle useSession theke asbe)
+  const session = null; 
+  const signOut = () => {}; 
+
   const hasScrolledOnce = useRef(false);
 
-  // Close menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -35,15 +36,8 @@ const Navbar = () => {
 
     const handleScroll = () => {
       const offset = window.scrollY;
+      setScrolled(offset > 50);
 
-      // Background logic
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      // FIXED ERROR 2: Flash line logic properly handled inside useEffect
       if (offset > 10 && !hasScrolledOnce.current) {
         hasScrolledOnce.current = true;
         setFlashLine(true);
@@ -55,21 +49,22 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
+    };
   }, []);
 
-  // Prevent hydration mismatch
   if (!mounted) return null;
 
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-md bg-white/10 dark:bg-black/20 border-transparent" 
+          ? "backdrop-blur-md bg-white/10 dark:bg-black/20 border-transparent"
           : "dark:bg-black/60 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800"
       }`}
     >
-      {/* Interactive Scroll Progress Line */}
       <motion.div
         initial={{ width: "0%", opacity: 0 }}
         animate={flashLine ? { width: "100%", opacity: 1 } : { width: "100%", opacity: 0 }}
@@ -85,9 +80,9 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-medium">
           <Link href="/" className="text-yellow-500 font-semibold hover:text-green-500 hover:underline transition">Home</Link>
-          <Link href="/marketplace" className="text-yellow-500 font-semibold hover:text-green-500 hover:underline hover:right-to-left transition">Marketplace</Link>
+          <Link href="/marketplace" className="text-yellow-500 font-semibold hover:text-green-500 hover:underline transition">Marketplace</Link>
           <Dropdown
-            title="Solutions" className="text-yellow-500 font-semibold hover:text-green-500 transition"
+            title="Solutions"
             items={[
               { name: "Fertilizer", link: "/fertilizer" },
               { name: "Crops & Diseases", link: "/crop-dieseases" },
@@ -95,9 +90,8 @@ const Navbar = () => {
               { name: "Services", link: "/services" },
             ]}
           />
-
           <Dropdown
-            title="Resources" 
+            title="Resources"
             items={[
               { name: "How It Works", link: "/how-it-works" },
               { name: "Agriculturists", link: "/agriculturist" },
@@ -106,7 +100,7 @@ const Navbar = () => {
           <Link href="/about" className="text-yellow-500 font-semibold hover:text-green-500 transition">About</Link>
         </div>
 
-        {/* Desktop Right Side */}
+        {/* Desktop Right Side - Fixed Logic */}
         <div className="hidden md:flex items-center gap-6">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -117,17 +111,10 @@ const Navbar = () => {
             {theme === "dark" ? <HiSun /> : <HiMoon />}
           </button>
 
-          <Link
-            href="/login"
-            className={`px-5 py-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-green-500 font-bold" : "text-black dark:text-gray-300"
-            } hover:text-green-400`}
-          >
-            Log In
-          </Link>
-
+          {session ? (
+            <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                {session.user.image && (
+                {session.user?.image && (
                   <Image
                     src={session.user.image}
                     alt="user"
@@ -136,22 +123,23 @@ const Navbar = () => {
                     className="rounded-full"
                   />
                 )}
-                <span className="hidden lg:block">
-                  {session.user.name || "User"}
+                <span className="hidden lg:block dark:text-white">
+                  {session.user?.name || "User"}
                 </span>
               </div>
-
               <button
                 onClick={() => signOut()}
                 className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
               >
                 Logout
               </button>
-            </>
+            </div>
           ) : (
             <Link
               href="/login"
-              className="px-5 py-2 bg-green-600 text-white rounded-full hover:bg-green-700"
+              className={`px-5 py-2 text-sm font-medium transition-colors ${
+                scrolled ? "text-green-500 font-bold" : "text-black dark:text-gray-300"
+              } hover:text-green-400`}
             >
               Log In
             </Link>
@@ -160,22 +148,15 @@ const Navbar = () => {
 
         {/* Mobile Buttons */}
         <div className="md:hidden flex items-center gap-4">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-xl"
-          >
+          <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="text-xl">
             {theme === "dark" ? <HiSun /> : <HiMoon />}
           </button>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-2xl text-green-600"
-          >
+          <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-green-600">
             {isOpen ? <HiX /> : <HiMenuAlt3 />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -195,19 +176,7 @@ const Navbar = () => {
                 <Info className="text-green-600 h-5" /> About
               </Link>
             </div>
-
             <hr className="border-gray-300 dark:border-zinc-700" />
-
-            <div className="flex flex-col gap-2">
-              <p className="text-xs uppercase font-semibold text-gray-500">Solutions</p>
-              <Link href="/fertilizer" onClick={() => setIsOpen(false)} className="font-semibold text-lg hover:text-green-600">Fertilizer</Link>
-              <Link href="/crop-dieseases" onClick={() => setIsOpen(false)} className="font-semibold text-lg hover:text-green-600">Crops & Diseases</Link>
-              <Link href="/live" onClick={() => setIsOpen(false)} className="font-semibold text-lg hover:text-green-600">Live Crops</Link>
-              <Link href="/services" onClick={() => setIsOpen(false)} className="font-semibold text-lg hover:text-green-600">Services</Link>
-            </div>
-
-            <hr className="border-gray-300 dark:border-zinc-700" />
-
             <div className="flex flex-col gap-3 mt-2">
               <Link href="/login" onClick={() => setIsOpen(false)} className="py-3 text-center border-2 border-green-600 font-medium text-green-600 rounded-xl">
                 Log In
