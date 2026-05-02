@@ -117,7 +117,23 @@ const FAQ = () => {
                 <div className="collapse-content text-sm">Role changes depend on platform policy. If allowed: “You can request a role change in account settings or contact support.” If not allowed, explain the procedure for creating a new account or contacting admins.</div>
             </div>
 
-           
+           {/* Technical Issues */}
+           <h2 className="text-xl font-semibold mt-5">Technical Issues</h2>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">I'm having trouble logging in. What should I do?</div>
+                <div className="collapse-content text-sm">Try resetting your password via the “Forgot Password” link. If the problem persists, clear browser cache, try a different browser, or contact support with your account email and a description of the issue.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">Can I use AgriFlow on mobile devices?</div>
+                <div className="collapse-content text-sm">Yes, AgriFlow is accessible on mobile devices through a responsive web interface. For the best experience, we recommend using the latest version of your device's web browser.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">What browsers are supported?</div>
+                <div className="collapse-content text-sm">If not specified, use a typical answer: “Latest versions of Chrome, Firefox, Edge, and Safari are supported.” Adjust to actual tested browsers.</div>
+            </div>
         </div>
     );
 };
