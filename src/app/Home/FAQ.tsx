@@ -152,6 +152,24 @@ const FAQ = () => {
                 <div className="collapse-title font-semibold">How do I view platform analytics?</div>
                 <div className="collapse-content text-sm">Use the Admin Analytics panel to view platform metrics and performance data. Admins can access analytics dashboards (buying/selling data, delivery process metrics) from the admin area to monitor activity.</div>
             </div>
+
+            {/* Marketplace and products */}
+            <h2 className="text-xl font-semibold mt-5">Marketplace and products</h2>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">What crops can I buy/sell on AgriFlow?</div>
+                <div className="collapse-content text-sm">Any crops that comply with platform policies can be listed. Provide examples/categories (grains, vegetables, fruits, seeds) relevant to your market.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">How are prices determined?</div>
+                <div className="collapse-content text-sm">Prices are set by sellers, influenced by market guidance and suggested price data. The AI chatbot may provide market price suggestions.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">What information should be included in product listings?</div>
+                <div className="collapse-content text-sm">Include crop name, variety, quantity, grade, price, images, location, and seller contact/pickup details.</div>
+            </div>
         </div>
     );
 };
