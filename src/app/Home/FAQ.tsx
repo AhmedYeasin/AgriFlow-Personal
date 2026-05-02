@@ -93,6 +93,31 @@ const FAQ = () => {
                 <div className="collapse-title font-semibold">In what languages does the chatbot support users?</div>
                 <div className="collapse-content text-sm">Both English and Bangla you can chat with, but we prefer English for better solution.</div>
             </div>
+
+            {/* Security & Privacy */}
+            <h2 className="text-xl font-semibold mt-5">Security & Privacy</h2>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">How is my data protected on AgriFlow?</div>
+                <div className="collapse-content text-sm">AgriFlow uses standard security practices (secure authentication, encrypted connections). For full details, link to your Privacy Policy and Security page.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">Is the payment system secure?</div>
+                <div className="collapse-content text-sm">Payments are processed through the platform’s secure payment gateway; card and payment data are handled by the payment provider, not stored directly by the site (confirm actual implementation).</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">How is authentication handled?</div>
+                <div className="collapse-content text-sm">The platform uses role-based authentication and authorization to control access. For details (2FA, session length), include your exact policies.</div>
+            </div>
+            <div className="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
+                <input type="checkbox" name="my-accordion-3" defaultChecked />
+                <div className="collapse-title font-semibold">Can I change my role?</div>
+                <div className="collapse-content text-sm">Role changes depend on platform policy. If allowed: “You can request a role change in account settings or contact support.” If not allowed, explain the procedure for creating a new account or contacting admins.</div>
+            </div>
+
+           
         </div>
     );
 };
